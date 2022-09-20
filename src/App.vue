@@ -1,32 +1,46 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
-  </div>
+	<v-app>
+		<v-main class="px-2">
+			<v-container class="principal-main my-16 pa-10">
+				<v-fab-transition>
+					<v-btn @click="toNew" color="primary" dark absolute bottom right fab style="bottom: 0" class="mb-5">
+						<v-icon>mdi-plus</v-icon>
+					</v-btn>
+				</v-fab-transition>
+				<router-view></router-view>
+			</v-container>
+		</v-main>
+	</v-app>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+	export default {
+		name: 'App',
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+		components: {
+			//HelloWorld,
+		},
+		methods: {
+			toNew() {
+				this.$router.push({ path: 'new' })
+			}
+		}
+	};
+</script>
+<style type="text/css">
+	.v-main{
+		background-color: #f4f5f7;
+	}
+	.v-main .principal-main{
+		background-color: #fff;
+		border-radius: 1rem;
+		box-shadow: 0px 8px 8px 0px rgb(0, 0, 0, 0.1);
+		min-height: calc(95vh - 100px);
+	}
+	.txt-light{
+		color: #53c1a0;
+	}
+	.btn-light{
+		background-color: #53c1a0;
+	}
 </style>
