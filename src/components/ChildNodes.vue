@@ -9,15 +9,18 @@
 						v-for="(node, i) in nodes"
 						:key="i"
 						class="node mx-auto pa-5 mb-8">
+						<a :href="'/#/new/'+node.id" class="transparent--text" style="position: absolute; top: 5px; right: 5px;">
+							<v-icon color="green" right>mdi-plus</v-icon>
+						</a>
 						<div class="text-overline mb-4">
 							{{node.title}} {{node.id}}
 						</div>
-						<v-card-actions>
-							<a class="btn-light px-4 v-btn v-btn--rounded v-btn--text theme--light v-size--small mx-2"
+						<v-card-actions class="pa-0 pa-md-2">
+							<a class="btn-light px-4 v-btn v-btn--rounded v-btn--text theme--light v-size--small mx-1 mx-md-2"
 							:href="'/#/nodes/'+node.id" v-on:click="getNodes(node.id)">
 								Ver nodos hijos
 							</a>
-							<delete-node class="mx-2" :idNode="node.id"></delete-node>
+							<delete-node class="mx-1 mx-md-2" :idNode="node.id"></delete-node>
 						</v-card-actions>
 					</v-card>
 				</v-row>

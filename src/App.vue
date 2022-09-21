@@ -5,11 +5,11 @@
 				<div class="translator mb-6">
 					<Translator :countries="countries" />
 				</div>
-				<v-fab-transition>
+				<!-- <v-fab-transition>
 					<v-btn @click="toNew" color="primary" dark absolute bottom right fab style="bottom: 0" class="mb-5">
 						<v-icon>mdi-plus</v-icon>
 					</v-btn>
-				</v-fab-transition>
+				</v-fab-transition> -->
 				<router-view></router-view>
 			</v-container>
 		</v-main>

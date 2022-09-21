@@ -9,10 +9,13 @@
 					v-for="(node, i) in nodes"
 					:key="i"
 					class="node mx-auto pa-5 mb-8">
+					<a :href="'/#/new/'+node.id" class="transparent--text" style="position: absolute; top: 5px; right: 5px;">
+						<v-icon color="green" right>mdi-plus</v-icon>
+					</a>
 					<div class="text-overline mb-4">
 						{{node.title}}
 					</div>
-					<v-card-actions>
+					<v-card-actions class="pa-0 pa-md-2">
 						<a class="btn-light px-4 v-btn v-btn--rounded v-btn--text theme--light v-size--small"
 						:href="'/#/nodes/'+node.id">
 							Ver nodos hijos

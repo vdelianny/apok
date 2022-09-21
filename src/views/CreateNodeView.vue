@@ -1,5 +1,5 @@
 <template>
-	<create-node />
+	<create-node :nodeParent="this.idParent"/>
 </template>
 
 <script lang="ts">
@@ -11,5 +11,12 @@
 		components: {
 			CreateNode
 		},
+
+		data: () => ({
+			idParent: null
+		}),
+		created () {
+			this.idParent = this.$route.params.id
+		}
 	})
 </script>

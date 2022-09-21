@@ -18,7 +18,7 @@ const routes: Array<RouteConfig> = [
     component: ChildNodesView
   },
   {
-    path: '/new',
+    path: '/new/:id',
     name: 'new',
     component: CreateNodeView
   },
