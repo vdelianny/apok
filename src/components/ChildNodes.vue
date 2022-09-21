@@ -8,16 +8,16 @@
 					<v-card
 						v-for="(node, i) in nodes"
 						:key="i"
-						class="node mx-auto pa-5 mb-5">
+						class="node mx-auto pa-5 mb-8">
 						<div class="text-overline mb-4">
 							{{node.title}} {{node.id}}
 						</div>
 						<v-card-actions>
-							<a class="btn-light px-4 v-btn v-btn--rounded v-btn--text theme--light v-size--small"
-							:href="'/#/nodes/'+node.id" v-on:click="reloadData(node.id)">
+							<a class="btn-light px-4 v-btn v-btn--rounded v-btn--text theme--light v-size--small mx-2"
+							:href="'/#/nodes/'+node.id" v-on:click="getNodes(node.id)">
 								Ver nodos hijos
 							</a>
-							<delete-node :idNode="node.id"></delete-node>
+							<delete-node class="mx-2" :idNode="node.id"></delete-node>
 						</v-card-actions>
 					</v-card>
 				</v-row>
@@ -42,25 +42,25 @@
 			nodes: null,
 		}),
 		methods: {
-			//reload nodes array
-			reloadData (id) {
-				this.axios
-				.get('https://api-graph.tests.grupoapok.com/api/nodes?parent='+id)
-				.then((response) => {
-					this.nodes = response.data
-				})
-				.catch(this.nodes = null)
-			},
 			deleteNode(idNode){
 				console.log(idNode)
+			},
+			//GET DATA NODES
+			getNodes(id){
+				this.axios
+					.get('https://api-graph.tests.grupoapok.com/api/nodes?parent='+id)
+					.then((response) => {this.nodes = response.data})
+					.catch(this.nodes = null)
 			}
 		},
-		//get children nodes for an idNode
+		watch: {
+			'$route'(to) {
+				this.getNodes(to.params.id)
+			}
+		},
+		//get data initial
 		mounted () {
-			this.axios
-				.get('https://api-graph.tests.grupoapok.com/api/nodes?parent='+this.nodeParent)
-				.then((response) => {this.nodes = response.data})
-				.catch(this.nodes = null)
+			this.getNodes(this.nodeParent)
 		},
 	}
 </script>

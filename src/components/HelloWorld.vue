@@ -8,7 +8,7 @@
 				<v-card
 					v-for="(node, i) in nodes"
 					:key="i"
-					class="node mx-auto pa-5 mb-5">
+					class="node mx-auto pa-5 mb-8">
 					<div class="text-overline mb-4">
 						{{node.title}}
 					</div>
