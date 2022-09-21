@@ -1,7 +1,10 @@
 <template>
 	<v-app>
 		<v-main class="px-2">
-			<v-container class="principal-main my-16 pa-10">
+			<v-container class="principal-main my-16 pa-10 pt-5">
+				<div class="translator mb-6">
+					<Translator :countries="countries" />
+				</div>
 				<v-fab-transition>
 					<v-btn @click="toNew" color="primary" dark absolute bottom right fab style="bottom: 0" class="mb-5">
 						<v-icon>mdi-plus</v-icon>
@@ -14,15 +17,33 @@
 </template>
 
 <script>
+	import { Translator } from 'vue-google-translate'
+
 	export default {
 		name: 'App',
 
 		components: {
-			//HelloWorld,
+			Translator
 		},
+		data: () => ({
+			countries: [
+				{
+					code: 'en|es',
+					title: 'Spanish',
+				},
+				{
+					code: 'en|pt',
+					title: 'Portuguese',
+				},
+				{
+					code: 'en|en',
+					title: 'English',
+				}
+			]
+		}),
 		methods: {
 			toNew() {
-				this.$router.push({ path: 'new' })
+				this.$router.push({ path: '/new' })
 			}
 		}
 	};
@@ -42,5 +63,18 @@
 	}
 	.btn-light{
 		background-color: #53c1a0;
+	}
+	body {
+		top:  0 !important;
+	}
+	.skiptranslate {
+		display: none !important;
+	}
+	.translator .language-item .language__text {
+		display: none;
+	}
+	.translator .grid {
+		display: flex!important;
+		justify-content: flex-end!important;
 	}
 </style>

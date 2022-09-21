@@ -75,8 +75,8 @@
 				this.dialog = false
 				this.axios
 				.delete('https://api-graph.tests.grupoapok.com/api/node/'+id)
-						.then((response) => console.log("borró", response))
-						.catch(() => console.log("no borró"))
+						.then((response) => console.log(response))
+						//.catch(() => console.log())
 			}
 		}
 	}

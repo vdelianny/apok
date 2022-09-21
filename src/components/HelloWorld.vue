@@ -27,9 +27,8 @@
 <script>
 	export default {
 		name: 'HelloWorld',
-
 		data: () => ({
-			nodes: null
+			nodes: null,
 		}),
 		//get all parents nodes
 		mounted () {
