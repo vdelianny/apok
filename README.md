@@ -32,3 +32,24 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### ROUTES
+
+### Get nodes
+```
+/
+```
+
+### Get nodes children
+```
+/nodes/:idParent
+```
+
+### Create new node
+```
+/new/:idNodeParent
+```
+
+
+

@@ -22,24 +22,39 @@
 				</v-col>
 			</v-row>
 		</v-col>
+		<v-col cols=12>
+			<alert-message v-if="msg.show" v-model="msg.show" :msgAlert="msg.text" class="mt-8"></alert-message>
+		</v-col>
 	</v-row>
 </template>
 
 <script>
+	import AlertMessage from './AlertMessage'
+
 	export default {
 		name: 'CreateNode',
 		props: {
 			nodeParent: null
 		},
 
+		components: {
+			AlertMessage
+		},
 		data: () => ({
-			name: ''
+			name: '',
+			msg:{
+				show: false,
+				text: ''
+			}
 		}),
 		methods: {
 			create () {
 				this.axios
 					.post('https://api-graph.tests.grupoapok.com/api/node', {title:this.name, parent:this.nodeParent})
-					.then((response) => {console.log(response)});
+					.then(() => {
+						this.msg.show = true
+						this.msg.text = 'Se ha creado un nuevo nodo'
+					});
 			}
 		}
 	}

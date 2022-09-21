@@ -38,6 +38,9 @@
 						</v-card-actions>
 					</v-card-text>
 				</div>
+				<div>
+					<alert-message v-if="msg.show" v-model="msg.show" :msgAlert="msg.text" class="mt-8"></alert-message>
+				</div>
 			</v-card>
 		</v-dialog>
 	</div>
@@ -45,24 +48,33 @@
 
 
 <script>
+	import AlertMessage from './AlertMessage'
+
 	export default {
 		name: 'DeleteNode',
 
 		props: {
 			idNode: null
 		},
+		components: {
+			AlertMessage
+		},
 
 		data: () => ({
 			nodes: null,
 			dialog: false,
-			hasChild: null
+			hasChild: null,
+			msg:{
+				show: false,
+				text: ''
+			}
 		}),
 		methods: {
 			//verify if can be removed
 			verifyDelete(id){
 				this.axios
 				.get('https://api-graph.tests.grupoapok.com/api/nodes?parent='+id)
-					.then((response) => this.openMsg(true))
+					.then(() => this.openMsg(true))
 					.catch(() => this.openMsg(false))
 			},
 			//open modal
@@ -72,10 +84,12 @@
 			},
 			//delete node
 			deleteNode(id) {
-				this.dialog = false
 				this.axios
 				.delete('https://api-graph.tests.grupoapok.com/api/node/'+id)
-						.then((response) => console.log(response))
+						.then(() => {
+							this.msg.show = true
+							this.msg.text = 'Se ha eliminado el nodo'
+						})
 						//.catch(() => console.log())
 			}
 		}

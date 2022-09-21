@@ -16,10 +16,11 @@
 						{{node.title}}
 					</div>
 					<v-card-actions class="pa-0 pa-md-2">
-						<a class="btn-light px-4 v-btn v-btn--rounded v-btn--text theme--light v-size--small"
+						<a class="btn-light px-4 v-btn v-btn--rounded v-btn--text theme--light v-size--small mx-1 mx-md-2"
 						:href="'/#/nodes/'+node.id">
 							Ver nodos hijos
 						</a>
+						<delete-node class="mx-1 mx-md-2" :idNode="node.id"></delete-node>
 					</v-card-actions>
 				</v-card>
 			</v-row>
@@ -28,8 +29,13 @@
 </template>
 
 <script>
+	import DeleteNode from './DeleteNode.vue'
+
 	export default {
 		name: 'HelloWorld',
+		components: {
+			DeleteNode
+		},
 		data: () => ({
 			nodes: null,
 		}),
